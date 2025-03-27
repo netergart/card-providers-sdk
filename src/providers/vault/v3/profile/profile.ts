@@ -1,9 +1,6 @@
 import { VaultV3SDKOptions } from "../../interfaces/vault.v3.interface";
 import VaultProviderV3Base from "../VaultProviderBase";
-import {
-  IProfileResponse,
-  IProfileUpdateInfoRequest,
-} from "./interfaces/profile.interface";
+import { IProfileResponse } from "./interfaces/profile.interface";
 
 export class Profile extends VaultProviderV3Base {
   constructor(options: VaultV3SDKOptions) {
@@ -19,15 +16,15 @@ export class Profile extends VaultProviderV3Base {
     });
   }
 
-  async updateInfo(body: IProfileUpdateInfoRequest): Promise<IProfileResponse> {
-    const path = "/reg/user/info";
+  // async updateInfo(body: IProfileUpdateInfoRequest): Promise<IProfileResponse> {
+  //   const path = "/reg/user/info";
 
-    return await this.request(path, {
-      method: "PATCH",
-      headers: this.createHeaders(),
-      data: body,
-    });
-  }
+  //   return await this.request(path, {
+  //     method: "PATCH",
+  //     headers: this.createHeaders(),
+  //     data: body,
+  //   });
+  // }
 }
 
 export default Profile;
