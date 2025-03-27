@@ -15,16 +15,6 @@ export class Profile extends VaultProviderV3Base {
       headers: this.createHeaders(),
     });
   }
-
-  // async updateInfo(body: IProfileUpdateInfoRequest): Promise<IProfileResponse> {
-  //   const path = "/reg/user/info";
-
-  //   return await this.request(path, {
-  //     method: "PATCH",
-  //     headers: this.createHeaders(),
-  //     data: body,
-  //   });
-  // }
 }
 
 export default Profile;
