@@ -1,6 +1,7 @@
 import { VaultV3SDKOptions } from "../../interfaces/vault.v3.interface";
 import VaultProviderV3Base from "../VaultProviderBase";
 import {
+  IKycStartRequest,
   IKycStartResponse,
   IKycStatusResponse,
 } from "./interfaces/kyc.interface";
@@ -20,12 +21,15 @@ export class Kyc extends VaultProviderV3Base {
     });
   }
 
-  async start(): Promise<IKycStartResponse> {
+  async start({
+    type = "SUMSUB",
+  }: IKycStartRequest): Promise<IKycStartResponse> {
     const path = "/reg/v1/verification/sumsub/token";
 
     return await this.request(path, {
       method: "POST",
       headers: this.createHeaders(),
+      data: { type },
     });
   }
 }
