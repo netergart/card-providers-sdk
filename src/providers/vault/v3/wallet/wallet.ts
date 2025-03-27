@@ -9,7 +9,6 @@ import {
   IWalletGetBalanceLogListResponse,
   IWalletGetBalanceLogReceiptRequest,
   IWalletGetBalanceLogReceiptResponse,
-  IWalletGetBalanceRequest,
 } from "./interfaces/wallet.interface";
 
 export class Wallet extends VaultProviderV3Base {
@@ -37,15 +36,12 @@ export class Wallet extends VaultProviderV3Base {
     });
   }
 
-  async balance(
-    body: IWalletGetBalanceRequest
-  ): Promise<IWalletBalanceListResponse[] | ErrorResponse> {
+  async balance(): Promise<IWalletBalanceListResponse[] | ErrorResponse> {
     const path = `/wallet/v1/balance`;
 
     return await this.request(path, {
       method: "GET",
       headers: this.createHeaders(),
-      params: body,
     });
   }
 
