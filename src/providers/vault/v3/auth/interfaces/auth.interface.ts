@@ -50,7 +50,7 @@ export interface ISignInResponse {
 }
 
 export interface IRetrieveCountryListRequest {
-  countryFilter?: "ALL" | "FULL" | "FORBIDDEN_FOR_REGISTRATION";
+  countryFilter: "ALL" | "FULL" | "FORBIDDEN_FOR_REGISTRATION";
 }
 
 export interface IRetrieveCountryListResponse {
