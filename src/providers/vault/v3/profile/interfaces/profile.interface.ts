@@ -4,7 +4,7 @@ export enum UserType {
   APPLICATION = "APPLICATION",
 }
 
-interface Address {
+export interface Address {
   buildingName?: string;
   buildingNumber?: string;
   country: string;
