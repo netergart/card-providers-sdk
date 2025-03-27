@@ -129,6 +129,14 @@ const history = await vault.card.setToken(accessToken).getTransactionHistory({
 // Card status management
 await vault.card.setToken(accessToken).block({ cardId: "card-id" });
 await vault.card.setToken(accessToken).unblock({ cardId: "card-id" });
+
+// Card balance and sensitive data
+const balance = await vault.card.setToken(accessToken).getCardBalance({
+  cardId: "card-id",
+});
+const sensitiveData = await vault.card.setToken(accessToken).getSensitiveData({
+  cardId: "card-id",
+});
 ```
 
 ## KYC Migration
@@ -172,6 +180,29 @@ const kycStatus = await vault.kyc.setToken(accessToken).status({
 | -                 | -                        | `wallet.getBalanceLogReceipt()` | New receipt method             |
 | -                 | -                        | `wallet.getAddress()`           | New crypto address method      |
 
+### Wallet Flow Changes
+
+```typescript
+// Get account information
+const accountInfo = await vault.wallet
+  .setToken(accessToken)
+  .accountInfo({ accountId: "account-id" });
+
+// Get transaction history
+const transactions = await vault.wallet
+  .setToken(accessToken)
+  .getBalanceLogList({
+    accountId: "account-id",
+    dateFrom: "2022-01-01",
+    dateTo: "2022-12-31",
+  });
+
+// Get transaction receipt
+const receipt = await vault.wallet
+  .setToken(accessToken)
+  .getBalanceLogReceipt({ logId: "transaction-id" });
+```
+
 ## New Modules in V3
 
 V3 introduces several new modules not present in V1:
@@ -192,6 +223,13 @@ V3 introduces several new modules not present in V1:
      currency: "USD",
      paymentMethod: "card",
    });
+
+   // Withdraw funds
+   const withdrawal = await vault.payment.setToken(accessToken).withdraw({
+     amount: 100,
+     currency: "USD",
+     accountId: "account-id",
+   });
    ```
 
 2. **BankAccount Module**: Manages bank accounts
@@ -202,12 +240,28 @@ V3 introduces several new modules not present in V1:
    ```
 
 3. **Invoice Module**: Handles invoice operations
+
    ```typescript
    // Create an invoice
    const invoice = await vault.invoice.setToken(accessToken).create({
      amount: 100,
      currency: "USD",
      description: "Service payment",
+   });
+   ```
+
+4. **Currency Module**: Manages currency operations
+
+   ```typescript
+   // Get exchange rates
+   const rates = await vault.currency.setToken(accessToken).getExchangeRate({
+     fromCurrency: "USD",
+     toCurrency: "EUR",
+   });
+
+   // Get token information
+   const tokenInfo = await vault.currency.setToken(accessToken).getTokenInfo({
+     tokenId: "token-id",
    });
    ```
 
@@ -225,3 +279,6 @@ V3 introduces several new modules not present in V1:
 3. **Response Interfaces**: V3 provides more detailed response interfaces, requiring updates to your data handling
 4. **Error Handling**: V3 enhances error handling with specific error responses
 5. **Session Management**: V3 introduces dedicated session management not present in V1
+6. **Type Safety**: V3 enforces stricter type checking, requiring updates to your type definitions
+7. **Security**: V3 introduces enhanced security measures, requiring updates to your security handling
+8. **Performance**: V3 optimizes API calls and payload sizes, potentially affecting your caching strategy

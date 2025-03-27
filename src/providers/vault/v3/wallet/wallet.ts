@@ -4,14 +4,12 @@ import VaultProviderV3Base from "../VaultProviderBase";
 import {
   IWalletAccountInfoRequest,
   IWalletAccountInfoResponse,
-  IWalletAddressRequest,
-  IWalletAddressResponse,
-  IWalletGetBalanceRequest,
   IWalletBalanceListResponse,
-  IWalletGetBalanceLogReceiptResponse,
-  IWalletGetBalanceLogReceiptRequest,
   IWalletGetBalanceLogListRequest,
   IWalletGetBalanceLogListResponse,
+  IWalletGetBalanceLogReceiptRequest,
+  IWalletGetBalanceLogReceiptResponse,
+  IWalletGetBalanceRequest,
 } from "./interfaces/wallet.interface";
 
 export class Wallet extends VaultProviderV3Base {
@@ -36,18 +34,6 @@ export class Wallet extends VaultProviderV3Base {
     return await this.request(path, {
       method: "GET",
       headers: this.createHeaders(),
-    });
-  }
-
-  async addressByAccount(
-    body: IWalletAddressRequest
-  ): Promise<IWalletAddressResponse | ErrorResponse> {
-    const path = `/wallet/v3/address/list`;
-
-    return await this.request(path, {
-      method: "GET",
-      headers: this.createHeaders(),
-      params: body,
     });
   }
 
