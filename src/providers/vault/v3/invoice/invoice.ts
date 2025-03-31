@@ -19,7 +19,7 @@ export class Invoice extends VaultProviderV3Base {
   async create(
     body: ICreateInvoiceRequest
   ): Promise<IInvoiceResponse | ErrorResponse> {
-    const path = "/invoice/payment";
+    const path = "/acquiring/invoice/payment";
 
     return await this.request(path, {
       method: "POST",
@@ -31,7 +31,7 @@ export class Invoice extends VaultProviderV3Base {
   async confirm(
     body: ICreateInvoiceRequest
   ): Promise<IInvoiceResponse | ErrorResponse> {
-    const path = "/invoice/payment/pay";
+    const path = "/acquiring/invoice/payment/pay";
 
     return await this.request(path, {
       method: "POST",
@@ -43,7 +43,7 @@ export class Invoice extends VaultProviderV3Base {
   async update(
     body: ICreateInvoiceRequest
   ): Promise<IInvoiceResponse | ErrorResponse> {
-    const path = "/invoice/payment";
+    const path = "/acquiring/invoice/payment";
 
     return await this.request(path, {
       method: "PUT",
@@ -55,7 +55,7 @@ export class Invoice extends VaultProviderV3Base {
   async info(
     body: IInvoiceIdRequest
   ): Promise<IInvoiceInfoResponse | ErrorResponse> {
-    const path = `/invoice/${body.invoiceId}`;
+    const path = `/acquiring/invoice/${body.invoiceId}`;
 
     return await this.request(path, {
       method: "GET",
@@ -66,9 +66,7 @@ export class Invoice extends VaultProviderV3Base {
   async list(
     body: IInvoiceListRequest
   ): Promise<IInvoiceListResponse | ErrorResponse> {
-    // const path = `/invoice`;
     const path = `/acquiring/invoice`;
-    // !TODO: Check if this is correct
 
     return await this.request(path, {
       method: "GET",
@@ -80,7 +78,7 @@ export class Invoice extends VaultProviderV3Base {
   async discount(
     body: IInvoiceDiscountRequest
   ): Promise<Record<any, any> | ErrorResponse> {
-    const path = "/invoice/payment/discount";
+    const path = "/acquiring/invoice/payment/discount";
 
     return await this.request(path, {
       method: "PUT",
