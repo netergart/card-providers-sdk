@@ -43,7 +43,7 @@ export class Auth extends VaultProviderV3Base {
   }
 
   async signIn(body: ISignInRequest): Promise<ISignInResponse | ErrorResponse> {
-    const path = "/v1/auth/token";
+    const path = "/reg/v1/auth/token";
     const headers = this.createHeaders(
       {
         partnerId: this.partnerId,
