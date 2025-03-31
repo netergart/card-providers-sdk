@@ -2,6 +2,7 @@ import { VaultV3SDKOptions } from "../interfaces/vault.v3.interface";
 import Auth from "./auth/auth";
 import BankAccount from "./bank.account/bank.account";
 import Card from "./card/card";
+import { Currency } from "./currency/currency";
 import { Invoice } from "./invoice/invoice";
 import Kyc from "./kyc/kyc";
 import { Payment } from "./payment/payment";
@@ -20,6 +21,7 @@ export class VaultProviderV3 {
     this.payment = new Payment(options);
     this.bankAccount = new BankAccount(options);
     this.invoice = new Invoice(options);
+    this.currency = new Currency(options);
   }
 
   auth: Auth;
@@ -31,6 +33,7 @@ export class VaultProviderV3 {
   payment: Payment;
   bankAccount: BankAccount;
   invoice: Invoice;
+  currency: Currency;
 }
 
 export default VaultProviderV3;
