@@ -8,6 +8,7 @@ import Kyc from "./kyc/kyc";
 import { Payment } from "./payment/payment";
 import { Profile } from "./profile/profile";
 import { Session } from "./sessions/session";
+import { Subscription } from "./subscription/subscription";
 import { Wallet } from "./wallet/wallet";
 
 export class VaultProviderV3 {
@@ -22,6 +23,7 @@ export class VaultProviderV3 {
     this.bankAccount = new BankAccount(options);
     this.invoice = new Invoice(options);
     this.currency = new Currency(options);
+    this.subscription = new Subscription(options);
   }
 
   auth: Auth;
@@ -34,6 +36,7 @@ export class VaultProviderV3 {
   bankAccount: BankAccount;
   invoice: Invoice;
   currency: Currency;
+  subscription: Subscription;
 }
 
 export default VaultProviderV3;
