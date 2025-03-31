@@ -40,6 +40,16 @@ export interface IProfileUpdateInfoRequest {
     userType: UserType;
 }
 export interface IProfileResponse {
+    userId: string;
+    email: string;
+    phone: string;
+    firstName: string;
+    lastName: string;
+    passwordLastChangeDate: string;
+    status: string;
+    userScopes: string[];
+}
+export interface IProfileExtendedResponse {
     addresses: ConfirmableAddress[];
     approved: boolean;
     companyName: string;
