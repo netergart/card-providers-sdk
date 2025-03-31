@@ -66,7 +66,9 @@ export class Invoice extends VaultProviderV3Base {
   async list(
     body: IInvoiceListRequest
   ): Promise<IInvoiceListResponse | ErrorResponse> {
-    const path = `/invoice`;
+    // const path = `/invoice`;
+    const path = `/acquiring/invoice`;
+    // !TODO: Check if this is correct
 
     return await this.request(path, {
       method: "GET",
