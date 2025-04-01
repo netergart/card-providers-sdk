@@ -1,6 +1,6 @@
+import axios, { AxiosRequestConfig } from "axios";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
-import axios, { AxiosRequestConfig } from "axios";
 
 dayjs.extend(utc);
 
@@ -26,13 +26,37 @@ export class ProviderBaseSDK {
     });
   }
 
+  private getErrorMessage(err: any): string {
+    if (!err) return "Unknown error occurred";
+
+    // Check nested response structure
+    if (err.response?.data) {
+      const data = err.response.data;
+      let message = data.message || "Unknown error occurred";
+
+      if (Array.isArray(data.errors) && data.errors.length > 0) {
+        const errorDetails = data.errors
+          .map((e: any) => `${e.key}: ${e.description}`)
+          .join("; ");
+        message += ` - ${errorDetails}`;
+      }
+
+      return message;
+    }
+
+    // Directly check for message
+    if (err.message) {
+      return err.message;
+    }
+
+    return "Unknown error occurred";
+  }
+
   private _request = <T>(options: AxiosRequestConfig): Promise<T> => {
     return axios
       .request(options)
       .then(({ data }) => data)
-      .catch((err) =>
-        Promise.reject(err?.response?.data?.message || err?.message)
-      );
+      .catch((err) => Promise.reject(this.getErrorMessage(err)));
   };
 
   protected request = <T>(
