@@ -2,6 +2,8 @@ import { VaultV3SDKOptions } from "../../interfaces/vault.v3.interface";
 import { ErrorResponse } from "../interfaces/common.interface";
 import VaultProviderV3Base from "../VaultProviderBase";
 import {
+  IWalletAccountCreateRequest,
+  IWalletAccountCreateResponse,
   IWalletAccountInfoRequest,
   IWalletAccountInfoResponse,
   IWalletAddressListRequest,
@@ -93,6 +95,18 @@ export class Wallet extends VaultProviderV3Base {
       method: "GET",
       headers: this.createHeaders(),
       params: body,
+    });
+  }
+
+  async createAccount(
+    body: IWalletAccountCreateRequest
+  ): Promise<IWalletAccountCreateResponse | ErrorResponse> {
+    const path = `/wallet/account`;
+
+    return await this.request(path, {
+      method: "POST",
+      headers: this.createHeaders(),
+      data: body,
     });
   }
 }
