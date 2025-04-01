@@ -55,7 +55,7 @@ export class ProviderBaseSDK {
     return axios
       .request(options)
       .then(({ data }) => data)
-      .catch((err) => Promise.reject(this.getErrorMessage(err)));
+      .catch((err) => Promise.reject(err));
   };
 
   protected request = <T>(
