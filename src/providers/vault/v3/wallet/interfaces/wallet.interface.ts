@@ -1,13 +1,13 @@
 import {
-  IPaginatedResponse,
-  IPaginationParams,
-} from "../../interfaces/common.interface";
-import {
   IFeeConfig,
   IRateRequest,
   ISignedRate,
   ISignedRateWithFee,
 } from "../../currency/interfaces/currency.interface";
+import {
+  IPaginatedResponse,
+  IPaginationParams,
+} from "../../interfaces/common.interface";
 
 export enum AccountType {
   CHECKING = "CHECKING",
@@ -38,27 +38,8 @@ export interface IWalletAccountInfoRequest {
 export interface IWalletAddressRequest {
   accountId: string;
   addressIndex?: number;
-  blockchain: string;
-  currency: string;
-}
-
-export interface IWalletAddressResponse {
-  type: string;
-  memo?: string;
-  addressIndex?: number;
   blockchain?: string;
-  address?: string;
-  accountHolderName?: string;
-  accountNumber?: string;
-  accountRoutingNumber?: string;
-  accountHolderAddress?: string;
-  swiftBic?: string;
-  bic?: string;
-  institutionNumber?: string;
-  transitNumber?: string;
-  bankName?: string;
-  bankAddress?: string;
-  iban?: string;
+  currency?: string;
 }
 
 export interface IWalletGetBalanceRequest {
@@ -171,3 +152,29 @@ export interface IWalletBalanceLog {
 
 export interface IWalletGetBalanceLogListResponse
   extends IPaginatedResponse<IWalletBalanceLog> {}
+
+export interface IWalletAddressListRequest {
+  accountId: string;
+  blockchain: string;
+  currency: string;
+  addressIndex?: number;
+}
+
+export interface IWalletAddressResponse {
+  type: string;
+  memo?: string;
+  addressIndex?: number;
+  blockchain?: string;
+  address?: string;
+  accountHolderName?: string;
+  accountNumber?: string;
+  accountRoutingNumber?: string;
+  accountHolderAddress?: string;
+  swiftBic?: string;
+  bic?: string;
+  institutionNumber?: string;
+  transitNumber?: string;
+  bankName?: string;
+  bankAddress?: string;
+  iban?: string;
+}
