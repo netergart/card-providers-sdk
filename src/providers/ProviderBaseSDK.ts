@@ -29,9 +29,14 @@ export class ProviderBaseSDK {
   private getErrorMessage(err: any): string {
     if (!err) return "Unknown error occurred";
 
+    // Check if error is directly the response object
+    if (err.response) {
+      err = err.response;
+    }
+
     // Check nested response structure
-    if (err.response?.data) {
-      const data = err.response.data;
+    if (err.data) {
+      const data = err.data;
       let message = data.message || "Unknown error occurred";
 
       if (Array.isArray(data.errors) && data.errors.length > 0) {
