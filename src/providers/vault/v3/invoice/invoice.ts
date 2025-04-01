@@ -1,5 +1,4 @@
 import { VaultV3SDKOptions } from "../../interfaces/vault.v3.interface";
-import { ErrorResponse } from "../interfaces/common.interface";
 import VaultProviderV3Base from "../VaultProviderBase";
 import {
   ICreateInvoiceRequest,
@@ -16,9 +15,7 @@ export class Invoice extends VaultProviderV3Base {
     super(options);
   }
 
-  async create(
-    body: ICreateInvoiceRequest
-  ): Promise<IInvoiceResponse | ErrorResponse> {
+  async create(body: ICreateInvoiceRequest): Promise<IInvoiceResponse> {
     const path = "/acquiring/invoice/payment";
 
     return await this.request(path, {
@@ -28,9 +25,7 @@ export class Invoice extends VaultProviderV3Base {
     });
   }
 
-  async confirm(
-    body: ICreateInvoiceRequest
-  ): Promise<IInvoiceResponse | ErrorResponse> {
+  async confirm(body: ICreateInvoiceRequest): Promise<IInvoiceResponse> {
     const path = "/acquiring/invoice/payment/pay";
 
     return await this.request(path, {
@@ -40,9 +35,7 @@ export class Invoice extends VaultProviderV3Base {
     });
   }
 
-  async update(
-    body: ICreateInvoiceRequest
-  ): Promise<IInvoiceResponse | ErrorResponse> {
+  async update(body: ICreateInvoiceRequest): Promise<IInvoiceResponse> {
     const path = "/acquiring/invoice/payment";
 
     return await this.request(path, {
@@ -52,9 +45,7 @@ export class Invoice extends VaultProviderV3Base {
     });
   }
 
-  async info(
-    body: IInvoiceIdRequest
-  ): Promise<IInvoiceInfoResponse | ErrorResponse> {
+  async info(body: IInvoiceIdRequest): Promise<IInvoiceInfoResponse> {
     const path = `/acquiring/invoice/${body.invoiceId}`;
 
     return await this.request(path, {
@@ -63,9 +54,7 @@ export class Invoice extends VaultProviderV3Base {
     });
   }
 
-  async list(
-    body: IInvoiceListRequest
-  ): Promise<IInvoiceListResponse | ErrorResponse> {
+  async list(body: IInvoiceListRequest): Promise<IInvoiceListResponse> {
     const path = `/acquiring/invoice`;
 
     return await this.request(path, {
@@ -75,9 +64,7 @@ export class Invoice extends VaultProviderV3Base {
     });
   }
 
-  async discount(
-    body: IInvoiceDiscountRequest
-  ): Promise<Record<any, any> | ErrorResponse> {
+  async discount(body: IInvoiceDiscountRequest): Promise<Record<any, any>> {
     const path = "/acquiring/invoice/payment/discount";
 
     return await this.request(path, {

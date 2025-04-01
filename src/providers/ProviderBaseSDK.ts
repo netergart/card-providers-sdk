@@ -26,31 +26,6 @@ export class ProviderBaseSDK {
     });
   }
 
-  private getErrorMessage(err: any): string {
-    if (!err) return "Unknown error occurred";
-
-    // Check if error is directly the response object
-    if (err.response) {
-      err = err.response;
-    }
-
-    // Check nested response structure
-    if (err.data) {
-      err = err.data;
-    }
-
-    let message = err.message || "Unknown error occurred";
-
-    if (Array.isArray(err.errors) && err.errors.length > 0) {
-      const errorDetails = err.errors
-        .map((e: any) => `${e.key}: ${e.description}`)
-        .join("; ");
-      message += ` - ${errorDetails}`;
-    }
-
-    return message;
-  }
-
   private _request = <T>(options: AxiosRequestConfig): Promise<T> => {
     return axios
       .request(options)

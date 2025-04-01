@@ -1,5 +1,4 @@
 import { VaultV3SDKOptions } from "../../interfaces/vault.v3.interface";
-import { ErrorResponse } from "../interfaces/common.interface";
 import VaultProviderV3Base from "../VaultProviderBase";
 import {
   IBlockchainListResponse,
@@ -19,9 +18,7 @@ export class Currency extends VaultProviderV3Base {
     super(options);
   }
 
-  async info(
-    body: ITokenInfoRequest
-  ): Promise<ITokenInfoResponse | ErrorResponse> {
+  async info(body: ITokenInfoRequest): Promise<ITokenInfoResponse> {
     const path = "/currency/token";
 
     return await this.request(path, {
@@ -31,7 +28,7 @@ export class Currency extends VaultProviderV3Base {
     });
   }
 
-  async summaryToken(): Promise<ITokenSummaryResponse[] | ErrorResponse> {
+  async summaryToken(): Promise<ITokenSummaryResponse[]> {
     const path = "/currency/token/short";
 
     return await this.request(path, {
@@ -42,7 +39,7 @@ export class Currency extends VaultProviderV3Base {
 
   async preferredCurrencies(
     body: IPreferredCurrenciesRequest
-  ): Promise<IPreferredCurrenciesResponse | ErrorResponse> {
+  ): Promise<IPreferredCurrenciesResponse> {
     const path = `/currency/preferred/${body.accountId}`;
 
     return await this.request(path, {
@@ -53,7 +50,7 @@ export class Currency extends VaultProviderV3Base {
 
   async setPreferredCurrencies(
     body: IPreferredCurrenciesRequest
-  ): Promise<IPreferredCurrenciesResponse | ErrorResponse> {
+  ): Promise<IPreferredCurrenciesResponse> {
     const path = `/currency/preferred/${body.accountId}`;
 
     return await this.request(path, {
@@ -63,9 +60,7 @@ export class Currency extends VaultProviderV3Base {
     });
   }
 
-  async getBlockchainList(): Promise<
-    IBlockchainListResponse[] | ErrorResponse
-  > {
+  async getBlockchainList(): Promise<IBlockchainListResponse[]> {
     const path = "/currency/blockchain";
 
     return await this.request(path, {
@@ -76,7 +71,7 @@ export class Currency extends VaultProviderV3Base {
 
   async getExchangeRate(
     body: IExchangeRateRequest
-  ): Promise<IExchangeRateResponse | ErrorResponse> {
+  ): Promise<IExchangeRateResponse> {
     const path = "/currency/exchange-rate";
 
     return await this.request(path, {
@@ -86,7 +81,7 @@ export class Currency extends VaultProviderV3Base {
     });
   }
 
-  async getAllCurrencies(): Promise<ICurrencyListResponse[] | ErrorResponse> {
+  async getAllCurrencies(): Promise<ICurrencyListResponse[]> {
     const path = "/currency";
 
     return await this.request(path, {
@@ -97,7 +92,7 @@ export class Currency extends VaultProviderV3Base {
 
   async getCurrencyByName(
     body: IGetCurrencyByNameRequest
-  ): Promise<ICurrencyListResponse | ErrorResponse> {
+  ): Promise<ICurrencyListResponse> {
     const path = `/currency/${body.name}`;
 
     return await this.request(path, {
