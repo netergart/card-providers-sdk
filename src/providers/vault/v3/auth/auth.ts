@@ -1,6 +1,5 @@
 import { VaultV3SDKOptions } from "../../interfaces/vault.v3.interface";
 import VaultProviderV3Base from "../VaultProviderBase";
-import { ErrorResponse } from "../interfaces/common.interface";
 import {
   IRetrieveCountryListRequest,
   IRetrieveCountryListResponse,
@@ -17,7 +16,7 @@ export class Auth extends VaultProviderV3Base {
     super(options);
   }
 
-  async signUp(body: ISignUpRequest): Promise<ISignUpResponse | ErrorResponse> {
+  async signUp(body: ISignUpRequest): Promise<ISignUpResponse> {
     const path = "/reg/v1/signup";
     const headers = this.createHeaders({ partnerId: this.partnerId }, false);
 
@@ -26,7 +25,7 @@ export class Auth extends VaultProviderV3Base {
 
   async signUpConfirm(
     body: ISignUpConfirmRequest
-  ): Promise<ISignUpConfirmResponse | ErrorResponse> {
+  ): Promise<ISignUpConfirmResponse> {
     const path = "/reg/v1/signup/confirm";
     const headers = this.createHeaders({ partnerId: this.partnerId }, false);
     const {
@@ -42,7 +41,7 @@ export class Auth extends VaultProviderV3Base {
     });
   }
 
-  async signIn(body: ISignInRequest): Promise<ISignInResponse | ErrorResponse> {
+  async signIn(body: ISignInRequest): Promise<ISignInResponse> {
     const path = "/reg/v1/auth/token";
     const headers = this.createHeaders(
       {
@@ -57,7 +56,7 @@ export class Auth extends VaultProviderV3Base {
 
   async retrieveCountryList(
     body: IRetrieveCountryListRequest
-  ): Promise<IRetrieveCountryListResponse[] | ErrorResponse> {
+  ): Promise<IRetrieveCountryListResponse[]> {
     const path = "/reg/v1/catalog/countries";
     const { countryFilter = "FULL" } = body;
 

@@ -1,5 +1,4 @@
 import { VaultV3SDKOptions } from "../../interfaces/vault.v3.interface";
-import { ErrorResponse } from "../interfaces/common.interface";
 import VaultProviderV3Base from "../VaultProviderBase";
 import {
   ICardBalanceResponse,
@@ -27,7 +26,7 @@ export class Card extends VaultProviderV3Base {
     super(options);
   }
 
-  async prices(): Promise<ICardPricesResponse[] | ErrorResponse> {
+  async prices(): Promise<ICardPricesResponse[]> {
     const path = "/card-holder/v1/card-offers";
 
     return await this.request(path, {
@@ -38,7 +37,7 @@ export class Card extends VaultProviderV3Base {
     });
   }
 
-  async requestList(): Promise<ICardRequestListResponse[] | ErrorResponse> {
+  async requestList(): Promise<ICardRequestListResponse[]> {
     const path = "/card-holder/v1/card-requests";
 
     return await this.request(path, {
@@ -49,7 +48,7 @@ export class Card extends VaultProviderV3Base {
 
   async createRequest(
     body: ICardCreateRequestRequest
-  ): Promise<ICardCreateRequestResponse | ErrorResponse> {
+  ): Promise<ICardCreateRequestResponse> {
     const path = "/card-holder/v1/card-requests";
 
     return await this.request(path, {
@@ -61,7 +60,7 @@ export class Card extends VaultProviderV3Base {
 
   async txHistory(
     body: ICardTxHistoryRequest
-  ): Promise<ICardTxHistoryResponse | ErrorResponse> {
+  ): Promise<ICardTxHistoryResponse> {
     const path = "/card-holder/transaction";
 
     return await this.request(path, {
@@ -71,7 +70,7 @@ export class Card extends VaultProviderV3Base {
     });
   }
 
-  async list(): Promise<ICardListResponse[] | ErrorResponse> {
+  async list(): Promise<ICardListResponse[]> {
     const path = "/card-holder/cardholder/card";
 
     return await this.request(path, {
@@ -80,7 +79,7 @@ export class Card extends VaultProviderV3Base {
     });
   }
 
-  async changePin(body: ICardResetPinRequest): Promise<string | ErrorResponse> {
+  async changePin(body: ICardResetPinRequest): Promise<string> {
     const { cardId, ...otherData } = body;
     const path = `/card-holder/cardholder/card/${cardId}/pin/reset`;
 
@@ -93,7 +92,7 @@ export class Card extends VaultProviderV3Base {
 
   async changeStatus(
     body: ICardChangeStatusRequest
-  ): Promise<ICardListResponse | ErrorResponse> {
+  ): Promise<ICardListResponse> {
     // TODO: we don't have response type in the docs
     const { cardId, requiredStatus, ...data } = body;
     const path = `/card-holder/cardholder/card/${cardId}/change-status`;
@@ -106,7 +105,7 @@ export class Card extends VaultProviderV3Base {
     });
   }
 
-  async info(body: ICardIdRequest): Promise<ICardListResponse | ErrorResponse> {
+  async info(body: ICardIdRequest): Promise<ICardListResponse> {
     const path = `/card-holder/cardholder/card/${body.cardId}`;
 
     return await this.request(path, {
@@ -115,9 +114,7 @@ export class Card extends VaultProviderV3Base {
     });
   }
 
-  async topUpInfo(
-    body: ICardIdRequest
-  ): Promise<ICardTopUpInfoResponse[] | ErrorResponse> {
+  async topUpInfo(body: ICardIdRequest): Promise<ICardTopUpInfoResponse[]> {
     const path = `/card-holder/cardholder/card/${body.cardId}/top-up-information`;
 
     return await this.request(path, {
@@ -128,7 +125,7 @@ export class Card extends VaultProviderV3Base {
 
   async sensitiveDetails(
     body: ICardIdRequest
-  ): Promise<ICardSensitiveDetailsResponse | ErrorResponse> {
+  ): Promise<ICardSensitiveDetailsResponse> {
     const path = `/card-holder/cardholder/card/${body.cardId}/sensitive-details`;
 
     return await this.request(path, {
@@ -137,7 +134,7 @@ export class Card extends VaultProviderV3Base {
     });
   }
 
-  async pin(body: ICardIdRequest): Promise<string | ErrorResponse> {
+  async pin(body: ICardIdRequest): Promise<string> {
     const path = `/card-holder/cardholder/card/${body.cardId}/pin`;
 
     return await this.request(path, {
@@ -146,9 +143,7 @@ export class Card extends VaultProviderV3Base {
     });
   }
 
-  async details(
-    body: ICardIdRequest
-  ): Promise<ICardDetailsInfoResponse | ErrorResponse> {
+  async details(body: ICardIdRequest): Promise<ICardDetailsInfoResponse> {
     const path = `/card-holder/cardholder/card/${body.cardId}/details`;
 
     return await this.request(path, {
@@ -157,9 +152,7 @@ export class Card extends VaultProviderV3Base {
     });
   }
 
-  async balance(
-    body: ICardIdRequest
-  ): Promise<ICardBalanceResponse | ErrorResponse> {
+  async balance(body: ICardIdRequest): Promise<ICardBalanceResponse> {
     const path = `/cardholder/card/${body.cardId}/balance`;
 
     return await this.request(path, {
@@ -170,7 +163,7 @@ export class Card extends VaultProviderV3Base {
 
   async setBillingAddress(
     body: ICardSetBillingAddressRequest
-  ): Promise<ICardSetBillingAddressResponse | ErrorResponse> {
+  ): Promise<ICardSetBillingAddressResponse> {
     const { cardRequestId, ...data } = body;
     const path = `/card-holder/v1/card-requests/${body.cardRequestId}/billing`;
 
@@ -181,7 +174,7 @@ export class Card extends VaultProviderV3Base {
     });
   }
 
-  async cancelCardRequest(body: ICardIdRequest): Promise<any | ErrorResponse> {
+  async cancelCardRequest(body: ICardIdRequest): Promise<any> {
     const path = `/card-holder/v1/card-requests/${body.cardId}/cancel`;
 
     return await this.request(path, {
@@ -192,7 +185,7 @@ export class Card extends VaultProviderV3Base {
 
   async setCardholderName(
     body: ICardSetCardholderNameRequest
-  ): Promise<ICardSetCardholderNameResponse | ErrorResponse> {
+  ): Promise<ICardSetCardholderNameResponse> {
     const path = `card-holder/v1/card-requests/${body.cardRequestId}/cardholder-name`;
 
     return await this.request(path, {

@@ -1,5 +1,4 @@
 import { VaultV3SDKOptions } from "../../interfaces/vault.v3.interface";
-import { ErrorResponse } from "../interfaces/common.interface";
 import VaultProviderV3Base from "../VaultProviderBase";
 import {
   IPaymentExchangeIdRequest,
@@ -20,9 +19,7 @@ export class Payment extends VaultProviderV3Base {
     super(options);
   }
 
-  async payIn(
-    body: IWalletPayInRequest
-  ): Promise<IWalletPayInResponse | ErrorResponse> {
+  async payIn(body: IWalletPayInRequest): Promise<IWalletPayInResponse> {
     const path = "/wallet/payin";
     const { dryRun = false, ...data } = body;
 

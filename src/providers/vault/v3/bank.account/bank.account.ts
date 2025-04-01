@@ -1,5 +1,4 @@
 import { VaultV3SDKOptions } from "../../interfaces/vault.v3.interface";
-import { ErrorResponse } from "../interfaces/common.interface";
 import VaultProviderV3Base from "../VaultProviderBase";
 import {
   IBankAccountCreateRequest,
@@ -15,7 +14,7 @@ export class BankAccount extends VaultProviderV3Base {
 
   async create(
     body: IBankAccountCreateRequest
-  ): Promise<IBankAccountResponse[] | ErrorResponse> {
+  ): Promise<IBankAccountResponse[]> {
     const path = "/bank/bank-account";
 
     return await this.request(path, {
@@ -25,9 +24,7 @@ export class BankAccount extends VaultProviderV3Base {
     });
   }
 
-  async list(
-    body: IBankAccountInfoRequest
-  ): Promise<IBankAccountResponse[] | ErrorResponse> {
+  async list(body: IBankAccountInfoRequest): Promise<IBankAccountResponse[]> {
     const path = "/bank/bank-account";
 
     return await this.request(path, {
@@ -37,9 +34,7 @@ export class BankAccount extends VaultProviderV3Base {
     });
   }
 
-  async infoById(
-    body: IBankAccountIdRequest
-  ): Promise<IBankAccountResponse | ErrorResponse> {
+  async infoById(body: IBankAccountIdRequest): Promise<IBankAccountResponse> {
     const path = `/bank/bank-account/${body.accountId}`;
 
     return await this.request(path, {
@@ -48,7 +43,7 @@ export class BankAccount extends VaultProviderV3Base {
     });
   }
 
-  async remove(body: IBankAccountIdRequest): Promise<any | ErrorResponse> {
+  async remove(body: IBankAccountIdRequest): Promise<any> {
     const path = `/bank/bank-account/${body.accountId}`;
 
     return await this.request(path, {

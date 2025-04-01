@@ -1,5 +1,4 @@
 import { VaultV3SDKOptions } from "../../interfaces/vault.v3.interface";
-import { ErrorResponse } from "../interfaces/common.interface";
 import VaultProviderV3Base from "../VaultProviderBase";
 import {
   IWalletAccountCreateRequest,
@@ -23,7 +22,7 @@ export class Wallet extends VaultProviderV3Base {
 
   async accountInfo(
     body: IWalletAccountInfoRequest
-  ): Promise<IWalletAccountInfoResponse | ErrorResponse> {
+  ): Promise<IWalletAccountInfoResponse> {
     const path = `/wallet/account/${body.accountId}`;
 
     return await this.request(path, {
@@ -32,7 +31,7 @@ export class Wallet extends VaultProviderV3Base {
     });
   }
 
-  async accountList(): Promise<IWalletAccountInfoResponse[] | ErrorResponse> {
+  async accountList(): Promise<IWalletAccountInfoResponse[]> {
     const path = "/wallet/account";
 
     return await this.request(path, {
@@ -41,7 +40,7 @@ export class Wallet extends VaultProviderV3Base {
     });
   }
 
-  async balance(): Promise<IWalletBalanceListResponse[] | ErrorResponse> {
+  async balance(): Promise<IWalletBalanceListResponse[]> {
     const path = `/wallet/v1/balance`;
 
     return await this.request(path, {
@@ -52,7 +51,7 @@ export class Wallet extends VaultProviderV3Base {
 
   async getBalanceLogReceipt(
     body: IWalletGetBalanceLogReceiptRequest
-  ): Promise<IWalletGetBalanceLogReceiptResponse | ErrorResponse> {
+  ): Promise<IWalletGetBalanceLogReceiptResponse> {
     const path = `/wallet/balance/log/${body.logId}`;
 
     return await this.request(path, {
@@ -64,7 +63,7 @@ export class Wallet extends VaultProviderV3Base {
 
   async getBalanceLogList(
     body: IWalletGetBalanceLogListRequest
-  ): Promise<IWalletGetBalanceLogListResponse | ErrorResponse> {
+  ): Promise<IWalletGetBalanceLogListResponse> {
     const path = `/wallet/balance/log`;
 
     return await this.request(path, {
@@ -76,7 +75,7 @@ export class Wallet extends VaultProviderV3Base {
 
   async addressByAccount(
     body: IWalletAddressRequest
-  ): Promise<IWalletAddressResponse[] | ErrorResponse> {
+  ): Promise<IWalletAddressResponse[]> {
     const path = `/wallet/v2/address/`;
 
     return await this.request(path, {
@@ -88,7 +87,7 @@ export class Wallet extends VaultProviderV3Base {
 
   async addressList(
     body: IWalletAddressListRequest
-  ): Promise<IWalletAddressResponse[] | ErrorResponse> {
+  ): Promise<IWalletAddressResponse[]> {
     const path = `/wallet/v2/address/list`;
 
     return await this.request(path, {
@@ -100,7 +99,7 @@ export class Wallet extends VaultProviderV3Base {
 
   async createAccount(
     body: IWalletAccountCreateRequest
-  ): Promise<IWalletAccountCreateResponse | ErrorResponse> {
+  ): Promise<IWalletAccountCreateResponse> {
     const path = `/wallet/account`;
 
     return await this.request(path, {
