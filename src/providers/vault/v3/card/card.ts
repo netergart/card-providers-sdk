@@ -32,7 +32,9 @@ export class Card extends VaultProviderV3Base {
 
     return await this.request(path, {
       method: "GET",
-      headers: this.createHeaders(),
+      headers: this.createHeaders({
+        "x-request-id": `/card-holder/v1/card-offers-${this.partnerClientId}`,
+      }),
     });
   }
 

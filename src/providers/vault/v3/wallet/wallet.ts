@@ -4,6 +4,9 @@ import VaultProviderV3Base from "../VaultProviderBase";
 import {
   IWalletAccountInfoRequest,
   IWalletAccountInfoResponse,
+  IWalletAddressListRequest,
+  IWalletAddressRequest,
+  IWalletAddressResponse,
   IWalletBalanceListResponse,
   IWalletGetBalanceLogListRequest,
   IWalletGetBalanceLogListResponse,
@@ -61,6 +64,30 @@ export class Wallet extends VaultProviderV3Base {
     body: IWalletGetBalanceLogListRequest
   ): Promise<IWalletGetBalanceLogListResponse | ErrorResponse> {
     const path = `/wallet/balance/log`;
+
+    return await this.request(path, {
+      method: "GET",
+      headers: this.createHeaders(),
+      params: body,
+    });
+  }
+
+  async addressByAccount(
+    body: IWalletAddressRequest
+  ): Promise<IWalletAddressResponse[] | ErrorResponse> {
+    const path = `/wallet/v2/address/`;
+
+    return await this.request(path, {
+      method: "GET",
+      headers: this.createHeaders(),
+      params: body,
+    });
+  }
+
+  async addressList(
+    body: IWalletAddressListRequest
+  ): Promise<IWalletAddressResponse[] | ErrorResponse> {
+    const path = `/wallet/v2/address/list`;
 
     return await this.request(path, {
       method: "GET",
