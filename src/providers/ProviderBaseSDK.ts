@@ -36,25 +36,19 @@ export class ProviderBaseSDK {
 
     // Check nested response structure
     if (err.data) {
-      const data = err.data;
-      let message = data.message || "Unknown error occurred";
-
-      if (Array.isArray(data.errors) && data.errors.length > 0) {
-        const errorDetails = data.errors
-          .map((e: any) => `${e.key}: ${e.description}`)
-          .join("; ");
-        message += ` - ${errorDetails}`;
-      }
-
-      return message;
+      err = err.data;
     }
 
-    // Directly check for message
-    if (err.message) {
-      return err.message;
+    let message = err.message || "Unknown error occurred";
+
+    if (Array.isArray(err.errors) && err.errors.length > 0) {
+      const errorDetails = err.errors
+        .map((e: any) => `${e.key}: ${e.description}`)
+        .join("; ");
+      message += ` - ${errorDetails}`;
     }
 
-    return "Unknown error occurred";
+    return message;
   }
 
   private _request = <T>(options: AxiosRequestConfig): Promise<T> => {
@@ -63,7 +57,7 @@ export class ProviderBaseSDK {
       .then(({ data }) => data)
       .catch((err) => {
         // console.error("Error in request:", err);
-        return Promise.reject(err);
+        return Promise.reject(this.getErrorMessage(err));
       });
   };
 
