@@ -150,7 +150,7 @@ export interface IWalletAddressByAccountResponse {
     type: string;
     addressIndex: number;
     blockchain: string;
-    address: number;
+    address: string;
 }
 export interface IWalletAccountCreateRequest {
     shortName: string;
