@@ -122,9 +122,8 @@ export interface ICardSetCardholderNameRequest {
     cardholderName: string;
     cardRequestId: string;
 }
-export interface ICardSetBillingAddressRequest {
+export interface ICardSetBillingAddressRequest extends IAddress {
     cardRequestId: string;
-    billingAddress: IAddress;
 }
 export interface ICardSetBillingAddressResponse {
     id: string;

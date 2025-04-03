@@ -165,7 +165,7 @@ export class Card extends VaultProviderV3Base {
     body: ICardSetBillingAddressRequest
   ): Promise<ICardSetBillingAddressResponse> {
     const { cardRequestId, ...data } = body;
-    const path = `/card-holder/v1/card-requests/${body.cardRequestId}/billing`;
+    const path = `/card-holder/v1/card-requests/${body.cardRequestId}/billing-address`;
 
     return await this.request(path, {
       method: "POST",
