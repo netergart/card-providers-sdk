@@ -179,6 +179,13 @@ export interface IWalletAddressResponse {
   iban?: string;
 }
 
+export interface IWalletAddressByAccountResponse {
+  type: string;
+  addressIndex: number;
+  blockchain: string;
+  address: number;
+}
+
 export interface IWalletAccountCreateRequest {
   shortName: string;
   accountType: string;

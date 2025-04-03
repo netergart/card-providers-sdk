@@ -5,6 +5,7 @@ import {
   IWalletAccountCreateResponse,
   IWalletAccountInfoRequest,
   IWalletAccountInfoResponse,
+  IWalletAddressByAccountResponse,
   IWalletAddressListRequest,
   IWalletAddressRequest,
   IWalletAddressResponse,
@@ -75,7 +76,7 @@ export class Wallet extends VaultProviderV3Base {
 
   async addressByAccount(
     body: IWalletAddressRequest
-  ): Promise<IWalletAddressResponse[]> {
+  ): Promise<IWalletAddressByAccountResponse> {
     const path = `/wallet/v2/address/`;
 
     return await this.request(path, {

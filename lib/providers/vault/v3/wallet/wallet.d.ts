@@ -1,6 +1,6 @@
 import { VaultV3SDKOptions } from "../../interfaces/vault.v3.interface";
 import VaultProviderV3Base from "../VaultProviderBase";
-import { IWalletAccountCreateRequest, IWalletAccountCreateResponse, IWalletAccountInfoRequest, IWalletAccountInfoResponse, IWalletAddressListRequest, IWalletAddressRequest, IWalletAddressResponse, IWalletBalanceListResponse, IWalletGetBalanceLogListRequest, IWalletGetBalanceLogListResponse, IWalletGetBalanceLogReceiptRequest, IWalletGetBalanceLogReceiptResponse } from "./interfaces/wallet.interface";
+import { IWalletAccountCreateRequest, IWalletAccountCreateResponse, IWalletAccountInfoRequest, IWalletAccountInfoResponse, IWalletAddressByAccountResponse, IWalletAddressListRequest, IWalletAddressRequest, IWalletAddressResponse, IWalletBalanceListResponse, IWalletGetBalanceLogListRequest, IWalletGetBalanceLogListResponse, IWalletGetBalanceLogReceiptRequest, IWalletGetBalanceLogReceiptResponse } from "./interfaces/wallet.interface";
 export declare class Wallet extends VaultProviderV3Base {
     constructor(options: VaultV3SDKOptions);
     accountInfo(body: IWalletAccountInfoRequest): Promise<IWalletAccountInfoResponse>;
@@ -8,7 +8,7 @@ export declare class Wallet extends VaultProviderV3Base {
     balance(): Promise<IWalletBalanceListResponse[]>;
     getBalanceLogReceipt(body: IWalletGetBalanceLogReceiptRequest): Promise<IWalletGetBalanceLogReceiptResponse>;
     getBalanceLogList(body: IWalletGetBalanceLogListRequest): Promise<IWalletGetBalanceLogListResponse>;
-    addressByAccount(body: IWalletAddressRequest): Promise<IWalletAddressResponse[]>;
+    addressByAccount(body: IWalletAddressRequest): Promise<IWalletAddressByAccountResponse>;
     addressList(body: IWalletAddressListRequest): Promise<IWalletAddressResponse[]>;
     createAccount(body: IWalletAccountCreateRequest): Promise<IWalletAccountCreateResponse>;
 }
