@@ -16,7 +16,7 @@ export class Invoice extends VaultProviderV3Base {
   }
 
   async create(body: ICreateInvoiceRequest): Promise<IInvoiceResponse> {
-    const path = "/acquiring/invoice/payment";
+    const path = "/acquiring/v1/invoice/payment";
 
     return await this.request(path, {
       method: "POST",
@@ -26,7 +26,7 @@ export class Invoice extends VaultProviderV3Base {
   }
 
   async confirm(body: ICreateInvoiceRequest): Promise<IInvoiceResponse> {
-    const path = "/acquiring/invoice/payment/pay";
+    const path = "/acquiring/v1/invoice/payment/pay";
 
     return await this.request(path, {
       method: "POST",
@@ -36,7 +36,7 @@ export class Invoice extends VaultProviderV3Base {
   }
 
   async update(body: ICreateInvoiceRequest): Promise<IInvoiceResponse> {
-    const path = "/acquiring/invoice/payment";
+    const path = "/acquiring/v1/invoice/payment";
 
     return await this.request(path, {
       method: "PUT",
