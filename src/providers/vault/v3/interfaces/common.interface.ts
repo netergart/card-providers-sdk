@@ -44,7 +44,7 @@ export interface IAddress {
   state: string;
   city: string;
   addressLine1: string;
-  addressLine2?: string;
+  addressLine2: string;
   postalCode: string;
 }
 
