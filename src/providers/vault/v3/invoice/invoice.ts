@@ -26,7 +26,7 @@ export class Invoice extends VaultProviderV3Base {
   }
 
   async confirm(body: ICreateInvoiceRequest): Promise<IInvoiceResponse> {
-    const path = "/acquiring/v1/invoice/payment/pay";
+    const path = "/acquiring/invoice/payment/pay";
 
     return await this.request(path, {
       method: "POST",
