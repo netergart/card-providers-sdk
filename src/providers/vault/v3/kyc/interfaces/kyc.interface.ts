@@ -6,10 +6,6 @@ export interface IKycStartRequest {
   type: "SUMSUB";
 }
 
-export interface IKycStatusRequest {
-  token: string;
-}
-
 export interface IKycStatusResponse {
   info: {
     dob: string;

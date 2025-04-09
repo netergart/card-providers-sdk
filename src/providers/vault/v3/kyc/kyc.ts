@@ -3,7 +3,6 @@ import VaultProviderV3Base from "../VaultProviderBase";
 import {
   IKycStartRequest,
   IKycStartResponse,
-  IKycStatusRequest,
   IKycStatusResponse,
 } from "./interfaces/kyc.interface";
 
@@ -12,13 +11,12 @@ export class Kyc extends VaultProviderV3Base {
     super(options);
   }
 
-  async status(body: IKycStatusRequest): Promise<IKycStatusResponse> {
+  async status(): Promise<IKycStatusResponse> {
     const path = "/reg/v1/verification/sumsub/data";
 
     return await this.request(path, {
       method: "GET",
       headers: this.createHeaders(),
-      params: body,
     });
   }
 
