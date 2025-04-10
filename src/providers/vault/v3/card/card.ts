@@ -175,7 +175,7 @@ export class Card extends VaultProviderV3Base {
   }
 
   async cancelCardRequest(body: ICardIdRequest): Promise<any> {
-    const path = `/card-holder/v1/card-requests/${body.cardId}/cancel`;
+    const path = `/card-holder/v1/card-requests/${body.cardId}`;
 
     return await this.request(path, {
       method: "DELETE",
